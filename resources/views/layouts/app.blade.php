@@ -9,11 +9,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="theme-color" content="#ffffff">
     @vite('resources/sass/app.scss')
-    @include('sweetalert::alert')
 
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
         <div class="sidebar-brand d-none d-md-flex">
             <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
@@ -76,6 +76,7 @@
         </header>
         <div class="body flex-grow-1 px-3">
             <div class="container-lg">
+                <h1 class="mb-4">@yield('title')</h1>
                 @yield('content')
             </div>
         </div>
@@ -88,7 +89,9 @@
                     Components</a></div>
         </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Toko Putra 2'),
 
     /*
     |--------------------------------------------------------------------------
@@ -185,7 +185,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-        'Role' => Spatie\Permission\Middleware\RoleMiddleware::class,
+        'role' => Spatie\Permission\Middleware\RoleMiddleware::class,
     ])->toArray(),
 
 ];
