@@ -80,14 +80,14 @@
                 @yield('content')
             </div>
         </div>
-        <footer class="footer">
+        {{-- <footer class="footer">
             <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> &copy;
                 2021
                 creativeLabs.
             </div>
             <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/bootstrap/ui-components/">CoreUI UI
                     Components</a></div>
-        </footer>
+        </footer> --}}
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>

@@ -8,6 +8,7 @@
         </a>
     </li>
 
+    @role('admin')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('users.index') }}">
             <svg class="nav-icon">
@@ -25,6 +26,7 @@
             {{ __('Roles') }}
         </a>
     </li>
+
     <li class="nav-item">
         <a class="nav-link" href="{{ route('supplier.index') }}">
             <svg class="nav-icon">
@@ -34,30 +36,33 @@
         </a>
     </li>
 
-    <li class="nav-group {{ request()->routeIs('jenis-barang.*') || request()->routeIs('satuan-barang.*') || request()->routeIs('barang.*') ? 'show' : '' }}"
-        aria-expanded="{{ request()->routeIs('jenis-barang.*') || request()->routeIs('satuan-barang.*') || request()->routeIs('barang.*') ? 'true' : 'false' }}">
+    <li
+        class="nav-group {{ request()->routeIs('jenis-barang.*') || request()->routeIs('satuan-barang.*') || request()->routeIs('barang.*') ? 'show' : '' }}">
         <a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
                 <use xlink:href="{{ asset('icons/coreui.svg#cil-badge') }}"></use>
             </svg>
             Barang
         </a>
-        <ul class="nav-group-items"
-            style="{{ request()->routeIs('jenis-barang.*') || request()->routeIs('satuan-barang.*') || request()->routeIs('barang.*') ? 'height:auto' : 'height:0px' }}">
+        <ul class="nav-group-items">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('jenis-barang.index') }}" target="_top">
+                <a class="nav-link" href="{{ route('jenis-barang.index') }}">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-arrow-circle-right') }}"></use>
                     </svg>
                     Jenis Barang
                 </a>
-                <a class="nav-link" href="{{ route('satuan-barang.index') }}" target="_top">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('satuan-barang.index') }}">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-arrow-circle-right') }}"></use>
                     </svg>
                     Satuan Barang
                 </a>
-                <a class="nav-link" href="{{ route('barang.index') }}" target="_top">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('barang.index') }}">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-arrow-circle-right') }}"></use>
                     </svg>
@@ -66,6 +71,9 @@
             </li>
         </ul>
     </li>
+    @endrole
+
+    @role('admin|kasir')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('pos.index') }}">
             <svg class="nav-icon">
@@ -75,30 +83,34 @@
         </a>
     </li>
 
-    <li class="nav-group {{ request()->routeIs('transaksi-pos.*') || request()->routeIs('laba-rugi.*') ? 'show' : '' }}"
-        aria-expanded="{{ request()->routeIs('transaksi-pos.*') || request()->routeIs('laba-rugi.*') ? 'true' : 'false' }}">
+    <li
+        class="nav-group {{ request()->routeIs('transaksi-pos.*') || request()->routeIs('laba-rugi.*') ? 'show' : '' }}">
         <a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
                 <use xlink:href="{{ asset('icons/coreui.svg#cil-transfer') }}"></use>
             </svg>
             Transaksi
         </a>
-        <ul class="nav-group-items"
-            style="{{ request()->routeIs('transaksi-pos.*') || request()->routeIs('laba-rugi.*') ? 'height:auto' : 'height:0px' }}">
+        <ul class="nav-group-items">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('transaksi-pos.index') }}" target="_top">
+                <a class="nav-link" href="{{ route('transaksi-pos.index') }}">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-arrow-circle-right') }}"></use>
                     </svg>
-                    Transaksi Pos
+                    Transaksi POS
                 </a>
-                <a class="nav-link" href="{{ route('laba-rugi.index') }}" target="_top">
+            </li>
+            @role('admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('laba-rugi.index') }}">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-arrow-circle-right') }}"></use>
                     </svg>
                     Laba Rugi
                 </a>
             </li>
+            @endrole
         </ul>
     </li>
+    @endrole
 </ul>

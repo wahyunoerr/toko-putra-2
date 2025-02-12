@@ -56,11 +56,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('jenis-barang', JenisBarangController::class);
     Route::resource('satuan-barang', SatuanBarangController::class);
     Route::resource('barang', BarangController::class);
+    // Route::get('pos/customer', [PosController::class, 'customer'])->name('pos.customer');
+    // Route::post('pos/set-customer', [PosController::class, 'setCustomer'])->name('pos.setCustomer');
+    // Route::post('pos/clear-customer', [PosController::class, 'clearCustomer'])->name('pos.clearCustomer');
+    // Route::resource('pos', PosController::class)->only(['index', 'store', 'destroy']);
+    // Route::post('pos/checkout', [PosController::class, 'checkout'])->name('pos.checkout');
+    // Route::get('transaksi-pos', [TransaksiPosController::class, 'index'])->name('transaksi-pos.index');
+    Route::get('laba-rugi', [LabaRugiController::class, 'index'])->name('laba-rugi.index');
+});
+
+Route::middleware(['auth', 'role:admin|kasir'])->group(function () {
+
     Route::get('pos/customer', [PosController::class, 'customer'])->name('pos.customer');
     Route::post('pos/set-customer', [PosController::class, 'setCustomer'])->name('pos.setCustomer');
     Route::post('pos/clear-customer', [PosController::class, 'clearCustomer'])->name('pos.clearCustomer');
     Route::resource('pos', PosController::class)->only(['index', 'store', 'destroy']);
     Route::post('pos/checkout', [PosController::class, 'checkout'])->name('pos.checkout');
     Route::get('transaksi-pos', [TransaksiPosController::class, 'index'])->name('transaksi-pos.index');
-    Route::get('laba-rugi', [LabaRugiController::class, 'index'])->name('laba-rugi.index');
 });
