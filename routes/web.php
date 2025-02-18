@@ -76,4 +76,5 @@ Route::middleware(['auth', 'role:admin|kasir'])->group(function () {
     Route::get('transaksi-pos/invoice/{id}', [TransaksiPosController::class, 'invoice'])->name('transaksi-pos.invoice');
     Route::get('transaksi-pos/filter-results', [TransaksiPosController::class, 'filter'])->name('transaksi-pos.filter-results');
     Route::get('transaksi-pos/print-filtered', [TransaksiPosController::class, 'printFilteredTransactions'])->name('transaksi-pos.print-filtered');
+    Route::get('/laporan-pendapatan', [LabaRugiController::class, 'index'])->name('laporan-pendapatan');
 });
