@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pos;
+use App\Models\PosDetail;
 use Illuminate\Http\Request;
 
 class LabaRugiController extends Controller
 {
     public function index()
     {
-        $transactions = Pos::with('barang')->get();
+        $transactions = PosDetail::with('barang')->get();
         $totalPendapatanKotor = $transactions->sum(function ($transaction) {
             return $transaction->quantity * $transaction->barang->hargaJual;
         });

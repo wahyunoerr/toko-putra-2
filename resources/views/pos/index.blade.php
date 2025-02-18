@@ -72,15 +72,25 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4" style="text-align: right;">Total:</th>
+                            <th>Rp. {{ number_format($total, 0, ',', '.') }}</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
 
         <div class="card-footer">
-            <h5>Total: Rp. {{ number_format($total, 0, ',', '.') }}</h5>
             <form method="POST" action="{{ route('pos.checkout') }}">
                 @csrf
-                <button type="submit" class="btn btn-success">Checkout</button>
+                <button type="submit" class="btn btn-success d-flex justify-content-between align-items-center float-end">
+                    <svg width="16" height="16">
+                        <use xlink:href="{{ asset('icons/coreui.svg#cil-touch-app') }}"></use>
+                    </svg>
+                    Checkout</button>
             </form>
         </div>
     </div>

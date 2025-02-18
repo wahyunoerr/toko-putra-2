@@ -63,7 +63,7 @@ class SatuanBarangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SatuanBarang $satuanBarang)
+    public function update(SatuanBarangRequest $request, SatuanBarang $satuanBarang)
     {
         $satuanBarang->update($request->validated());
 

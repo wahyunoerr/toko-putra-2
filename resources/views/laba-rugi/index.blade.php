@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Laba Rugi</h1>
+        <h1>Laporan Pendapatan</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -10,9 +10,8 @@
                     <th>Barang</th>
                     <th>Quantity</th>
                     <th>Harga Jual</th>
-                    <th>Total</th>
+                    <th>Total Per Item</th>
                     <th>Harga Beli Per Item</th>
-                    <th>Laba Rugi</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,12 +23,9 @@
                         <td>Rp.{{ number_format($transaction->barang->hargaJual, 2, ',', '.') }}</td>
                         <td>Rp.{{ number_format($transaction->barang->hargaJual * $transaction->quantity, 2, ',', '.') }}
                         </td>
-                        <td>Rp.
-                            {{ number_format($transaction->barang->hargaBeli / $transaction->barang->stok, 2, ',', '.') }}
+                        <td>Rp.{{ number_format($transaction->barang->hargaBeli / $transaction->barang->stok, 2, ',', '.') }}
                         </td>
-                        <td>Rp.
-                            {{ number_format(($transaction->barang->hargaBeli / $transaction->barang->stok) * $transaction->quantity, 2, ',', '.') }}
-                        </td>
+
                     </tr>
                 @endforeach
             </tbody>

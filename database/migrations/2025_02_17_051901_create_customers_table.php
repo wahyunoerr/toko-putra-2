@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pos', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_transaksi');
-            $table->decimal('total_belanja', 10, 2);
+            $table->string('name');
+            $table->string('phone');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pos');
+        Schema::dropIfExists('customers');
     }
 };
