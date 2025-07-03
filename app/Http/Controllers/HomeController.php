@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Pos;
+use App\Models\PosDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,15 +28,18 @@ class HomeController extends Controller
     public function index()
     {
 
-        $transaction = DB::table('pos')->count();
-        $TPkotor = DB::table('pos')->sum('total_belanja'); // Total pendapatan kotor
+        $transaction = Pos::count();
+        $data = PosDetail::with('barang')
+            ->get();
 
-        $TPbersih = DB::table('pos_details')
-            ->join('barangs', 'pos_details.barang_id', '=', 'barangs.id')
-            ->select(DB::raw('SUM((barangs.hargaJual - (barangs.hargaBeli / GREATEST(barangs.stok, 1))) * pos_details.quantity) AS total_bersih'))
-            ->value('total_bersih');
+        $TPkotor = $data->sum(function ($transaction) {
+            return $transaction->quantity * $transaction->barang->hargaJual;
+        });
 
-
+        $TPbersih = $data->sum(function ($transaction) {
+            $hargaPerItem = $transaction->barang->hargaBeli / $transaction->barang->stok;
+            return ($transaction->barang->hargaJual - $hargaPerItem) * $transaction->quantity;
+        });
         return view('home', compact('transaction', 'TPkotor', 'TPbersih'));
     }
 }
